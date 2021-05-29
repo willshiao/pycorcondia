@@ -16,7 +16,6 @@ An example on a random tensor is shown below.
 ```python3
 import numpy as np
 from corcondia import corcondia_3d
-import matplotlib.pyplot as plt
 
 X = np.random.rand(5, 5, 5)
 print(corcondia_3d(X, k=3))
