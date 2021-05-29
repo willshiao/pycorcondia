@@ -15,18 +15,18 @@ def invert_sing(s):
     return np.diag(1.0 / s[::-1])
 
 def corcondia_3d(X, k = 1, init='random', **kwargs):
-    weights, X_approx_ks = parafac(X, k, init=init, **kwargs)
+    # Weights are not important since normalize_factors is false by default
+    #  so the weights will be all ones.
+    _, X_approx_ks = parafac(X, k, init=init, **kwargs)
 
     A, B, C = X_approx_ks
-    x = tl.cp_to_tensor((weights, X_approx_ks))
-
     Ua, Sa, Va = np.linalg.svd(A, full_matrices=False)
     Ub, Sb, Vb = np.linalg.svd(B, full_matrices=False)
     Uc, Sc, Vc = np.linalg.svd(C, full_matrices=False)
 
     inverted = [invert_sing(x) for x in (Sa, Sb, Sc)]
 
-    part1 = kronecker_mat_ten([Ua.T, Ub.T, Uc.T], x)
+    part1 = kronecker_mat_ten([Ua.T, Ub.T, Uc.T], X)
     part2 = kronecker_mat_ten(inverted, part1)
     G = kronecker_mat_ten([Va.T, Vb.T, Vc.T], part2)
 
