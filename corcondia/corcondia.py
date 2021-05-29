@@ -12,7 +12,7 @@ def kronecker_mat_ten(matrices, X):
 # Shortcut to invert singular values.
 # Given a vector of singular values, returns the inverted matrix
 def invert_sing(s):
-    return np.diag(1.0 / s[::-1])
+    return np.diag(1.0 / s)
 
 def corcondia_3d(X, k = 1, init='random', **kwargs):
     # Weights are not important since normalize_factors is false by default
@@ -27,6 +27,10 @@ def corcondia_3d(X, k = 1, init='random', **kwargs):
     inverted = [invert_sing(x) for x in (Sa, Sb, Sc)]
 
     part1 = kronecker_mat_ten([Ua.T, Ub.T, Uc.T], X)
+    # TODO: line below can be omitted if we multiply the k-th column
+    #  of Ua, Ub and Uc by the inverse of the corresponding k-th singular value, that is 1/σ_k.
+    #  Then, the previous line will need to use the updated Ua, Ub and Uc
+    # (note by Yorgos)
     part2 = kronecker_mat_ten(inverted, part1)
     G = kronecker_mat_ten([Va.T, Vb.T, Vc.T], part2)
 
