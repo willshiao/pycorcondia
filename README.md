@@ -1,5 +1,5 @@
 # pycorcondia
-[![](https://img.shields.io/pypi/v/corcondia.svg)](https://pypi.org/pypi/corcondia/)
+[![](https://img.shields.io/pypi/v/corcondia.svg)](https://pypi.org/pypi/corcondia/) [![](https://img.shields.io/pypi/l/corcondia)](https://pypi.org/pypi/corcondia/) 
 
 CORCONDIA (Core Consistency Diagnostic) implementation in Python. It uses Tensorly with the Numpy backend.
 
