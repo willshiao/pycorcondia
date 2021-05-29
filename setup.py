@@ -15,6 +15,8 @@ setup(
     install_requires=[
         "tensorly",
         "numpy",
-        "pytest",
+    ],
+    tests_require=[
+        'pytest',
     ],
 )

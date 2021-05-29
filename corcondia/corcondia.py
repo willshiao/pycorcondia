@@ -9,7 +9,7 @@ def kronecker_mat_ten(matrices, X):
         X = mode_dot(X, M, k)
     return X
 
-def corcondia(X, k = 1, init='random', **kwargs):
+def corcondia_3d(X, k = 1, init='random', **kwargs):
     weights, X_approx_ks = parafac(X, k, init=init, **kwargs)
 
     A, B, C = X_approx_ks
